@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">WorldWeather</string>
+    <string name="low">L</string>
+    <string name="high">H</string>
+    <string name="icon">Icon</string>
+    <string name="zero_deg">0°</string>
+    <string name="visibility">Visibility</string>
+    <string name="zero_km">0 km</string>
+    <string name="pressure">Pressure</string>
+    <string name="zero_hpa">0 hPa</string>
 </resources>
