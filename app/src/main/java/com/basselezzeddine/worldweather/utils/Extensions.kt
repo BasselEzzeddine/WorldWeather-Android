@@ -1,4 +1,4 @@
-package com.basselezzeddine.worldweather.extensions
+package com.basselezzeddine.worldweather.utils
 
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater

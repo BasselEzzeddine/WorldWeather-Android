@@ -1,4 +1,4 @@
-package com.basselezzeddine.worldweather.scenes.cities
+package com.basselezzeddine.worldweather.presentation.cities
 
 import java.io.Serializable
 

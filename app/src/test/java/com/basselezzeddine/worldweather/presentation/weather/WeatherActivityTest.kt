@@ -1,4 +1,4 @@
-package com.basselezzeddine.worldweather.scenes.weather
+package com.basselezzeddine.worldweather.presentation.weather
 
 import android.content.Intent
 import android.content.res.Resources
@@ -6,18 +6,19 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import com.basselezzeddine.worldweather.BuildConfig
 import com.basselezzeddine.worldweather.R
-import com.basselezzeddine.worldweather.scenes.IntentKeys
-import com.basselezzeddine.worldweather.scenes.cities.City
+import com.basselezzeddine.worldweather.presentation.cities.City
+import com.basselezzeddine.worldweather.utils.IntentKeys
 import org.hamcrest.Matchers.equalTo
 import org.junit.After
-import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import org.robolectric.shadows.ShadowAlertDialog
 
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class)
@@ -38,21 +39,20 @@ class WeatherActivityTest {
     }
 
     @Test
-    fun shouldNotBeNull() {
-        assertNotNull(sut)
-    }
+    fun callingDisplayCity_displaysCorrectCity() {
+        // When
+        sut?.displayCity("Paris")
 
-    @Test
-    fun whenViewLoads_displaysCorrectCity() {
+        // Then
         assertThat(sut?.title.toString(), equalTo("Paris"))
     }
 
     @Test
-    fun callingDisplayWeatherInfo_displaysCorrectWeatherInfo_andHidesActivityIndicator() {
+    fun callingDisplayWeatherInfo_displaysCorrectWeatherInfo() {
         // When
         val icon = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.ic_sun)
-        val viewModel = FetchSuccessViewModel("15°", "27°", icon, "19°", "10 km", "1000 hPa")
-        sut?.displayWeatherInfo(viewModel)
+        val weatherModel = WeatherModel("15°", "27°", icon, "19°", "10 km", "1000 hPa")
+        sut?.displayWeatherInfo(weatherModel)
 
         // Then
         assertThat(sut?.textViewLow?.text.toString(), equalTo("15°"))
@@ -61,5 +61,15 @@ class WeatherActivityTest {
         assertThat(sut?.textViewCurrent?.text.toString(), equalTo("19°"))
         assertThat(sut?.textViewVisibility?.text.toString(), equalTo("10 km"))
         assertThat(sut?.textViewPressure?.text.toString(), equalTo("1000 hPa"))
+    }
+
+    @Test
+    fun callingDisplayErrorMessage_displaysCorrectErrorMessage() {
+        // When
+        sut?.displayErrorMessage("My error message")
+
+        // Then
+        val alertDialog = ShadowAlertDialog.getLatestAlertDialog()
+        assertThat(shadowOf(alertDialog).message.toString(), equalTo("My error message"))
     }
 }

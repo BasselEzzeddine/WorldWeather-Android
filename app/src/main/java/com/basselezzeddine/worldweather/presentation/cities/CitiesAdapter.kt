@@ -1,13 +1,13 @@
-package com.basselezzeddine.worldweather.scenes.cities
+package com.basselezzeddine.worldweather.presentation.cities
 
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import com.basselezzeddine.worldweather.scenes.IntentKeys
+import com.basselezzeddine.worldweather.utils.IntentKeys
 import com.basselezzeddine.worldweather.R
-import com.basselezzeddine.worldweather.extensions.inflate
-import com.basselezzeddine.worldweather.scenes.weather.WeatherActivity
+import com.basselezzeddine.worldweather.utils.inflate
+import com.basselezzeddine.worldweather.presentation.weather.WeatherActivity
 import kotlinx.android.synthetic.main.recyclerview_item_city.view.*
 
 class CitiesAdapter(private val cityList: List<City>):

@@ -1,4 +1,4 @@
-package com.basselezzeddine.worldweather.scenes.cities
+package com.basselezzeddine.worldweather.presentation.cities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -12,7 +12,8 @@ import butterknife.ButterKnife
 
 class CitiesActivity : AppCompatActivity() {
 
-    @BindView(R.id.recyclerView_cities) lateinit var recyclerViewCities: RecyclerView
+    @BindView(R.id.recyclerView_cities)
+    lateinit var recyclerViewCities: RecyclerView
 
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var citiesAdapter: CitiesAdapter

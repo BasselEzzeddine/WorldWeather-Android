@@ -1,4 +1,4 @@
-package com.basselezzeddine.worldweather.scenes
+package com.basselezzeddine.worldweather.utils
 
 object IntentKeys {
     const val city = "city"
