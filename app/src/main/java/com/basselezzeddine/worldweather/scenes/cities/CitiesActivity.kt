@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.basselezzeddine.worldweather.R
-import kotlinx.android.synthetic.main.activity_cities.*
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.OrientationHelper.VERTICAL
+import android.support.v7.widget.RecyclerView
+import butterknife.BindView
+import butterknife.ButterKnife
 
 class CitiesActivity : AppCompatActivity() {
+
+    @BindView(R.id.recyclerView_cities) lateinit var recyclerViewCities: RecyclerView
 
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var citiesAdapter: CitiesAdapter
@@ -24,14 +28,15 @@ class CitiesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cities)
+        ButterKnife.bind(this)
         setupRecyclerView()
     }
 
     private fun setupRecyclerView() {
         linearLayoutManager = LinearLayoutManager(this)
-        recyclerView_cities.layoutManager = linearLayoutManager
+        recyclerViewCities.layoutManager = linearLayoutManager
         citiesAdapter = CitiesAdapter(cityList)
-        recyclerView_cities.adapter = citiesAdapter
-        recyclerView_cities.addItemDecoration(DividerItemDecoration(this, VERTICAL))
+        recyclerViewCities.adapter = citiesAdapter
+        recyclerViewCities.addItemDecoration(DividerItemDecoration(this, VERTICAL))
     }
 }
