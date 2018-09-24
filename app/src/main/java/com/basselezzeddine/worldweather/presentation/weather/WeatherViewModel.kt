@@ -6,10 +6,10 @@ import com.basselezzeddine.worldweather.base.BaseViewModel
 import com.basselezzeddine.worldweather.model.RawWeatherModel
 import com.basselezzeddine.worldweather.network.WeatherWorker
 import com.basselezzeddine.worldweather.utils.WEATHER_BASE_URL
+import com.basselezzeddine.worldweather.utils.tomorrowString
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -50,11 +50,7 @@ class WeatherViewModel : BaseViewModel() {
     }
 
     private fun onRetrieveWeatherInfoSuccess(rawWeatherInfo: RawWeatherModel) {
-        val calendar = Calendar.getInstance()
-        calendar.add(Calendar.DAY_OF_YEAR, 1)
-        val tomorrow = calendar.time
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-        val tomorrowString = dateFormat.format(tomorrow)
+        val tomorrowString = Calendar.getInstance().tomorrowString()
         val tomorrowWeather = rawWeatherInfo.consolidated_weather.first { it.applicable_date == tomorrowString }
 
         val low = "%.0f°".format(tomorrowWeather.min_temp)
