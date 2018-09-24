@@ -5,12 +5,13 @@ import com.basselezzeddine.worldweather.R
 import com.basselezzeddine.worldweather.base.BaseViewModel
 import com.basselezzeddine.worldweather.model.RawWeatherModel
 import com.basselezzeddine.worldweather.network.WeatherWorker
+import com.basselezzeddine.worldweather.utils.WEATHER_BASE_URL
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class WeatherViewModel() : BaseViewModel() {
+class WeatherViewModel : BaseViewModel() {
 
     @Inject
     lateinit var weatherWorker: WeatherWorker
@@ -25,15 +26,17 @@ class WeatherViewModel() : BaseViewModel() {
     }
 
     fun fetchWeatherInfo(cityWoeid: String) {
-        subscription = weatherWorker.fetchWeatherInfo(cityWoeid)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { onRetrieveWeatherInfoStart() }
-                .doOnTerminate { onRetrieveWeatherInfoFinish() }
-                .subscribe(
-                        { rawWeatherInfo -> onRetrieveWeatherInfoSuccess(rawWeatherInfo) },
-                        { error -> onRetrieveWeatherInfoError(error) }
-                )
+        if (cityWoeid != "") {
+            subscription = weatherWorker.fetchWeatherInfo(cityWoeid)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { onRetrieveWeatherInfoStart() }
+                    .doOnTerminate { onRetrieveWeatherInfoFinish() }
+                    .subscribe(
+                            { rawWeatherInfo -> onRetrieveWeatherInfoSuccess(rawWeatherInfo) },
+                            { error -> onRetrieveWeatherInfoError(error) }
+                    )
+        }
     }
 
     private fun onRetrieveWeatherInfoStart() {
@@ -51,7 +54,11 @@ class WeatherViewModel() : BaseViewModel() {
         val current = "%.0f°".format(tomorrowWeather.the_temp)
         val visibility = "%.0f km".format(tomorrowWeather.visibility)
         val pressure = "%.0f hPa".format(tomorrowWeather.air_pressure)
-        weatherModel.value = WeatherModel(low, high, null, current, visibility, pressure)
+
+        val iconName = tomorrowWeather.weather_state_abbr
+        val imageUrl = "$WEATHER_BASE_URL/static/img/weather/png/64/$iconName.png"
+
+        weatherModel.value = WeatherModel(low, high, current, visibility, pressure, imageUrl)
     }
 
     private fun onRetrieveWeatherInfoError(error: Throwable) {

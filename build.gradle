@@ -10,6 +10,7 @@ buildscript {
     ext.dagger2_version = '2.16'
     ext.rxjava_version = '2.1.15'
     ext.rxandroid_version = '2.0.2'
+    ext.picasso_version = '2.71828'
     ext.junit_version = '4.12'
     ext.robolectric_version = '3.8'
 

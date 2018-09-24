@@ -3,7 +3,6 @@ package com.basselezzeddine.worldweather.presentation.weather
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import com.basselezzeddine.worldweather.BuildConfig
 import com.basselezzeddine.worldweather.R
 import com.basselezzeddine.worldweather.presentation.cities.City
@@ -29,7 +28,7 @@ class WeatherActivityTest {
     @Before
     fun setUp() {
         val intent = Intent()
-        intent.putExtra(IntentKeys.city, City("Paris", "12345"))
+        intent.putExtra(IntentKeys.city, City("Paris", ""))
         sut = Robolectric.buildActivity(WeatherActivity::class.java, intent).create().get()
     }
 
@@ -51,13 +50,12 @@ class WeatherActivityTest {
     fun callingDisplayWeatherInfo_displaysCorrectWeatherInfo() {
         // When
         val icon = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.ic_sun)
-        val weatherModel = WeatherModel("15°", "27°", icon, "19°", "10 km", "1000 hPa")
+        val weatherModel = WeatherModel("15°", "27°", "19°", "10 km", "1000 hPa", "")
         sut?.displayWeatherInfo(weatherModel)
 
         // Then
         assertThat(sut?.textViewLow?.text.toString(), equalTo("15°"))
         assertThat(sut?.textViewHigh?.text.toString(), equalTo("27°"))
-        assertThat((sut?.imageViewWeather?.drawable as BitmapDrawable).bitmap, equalTo(icon))
         assertThat(sut?.textViewCurrent?.text.toString(), equalTo("19°"))
         assertThat(sut?.textViewVisibility?.text.toString(), equalTo("10 km"))
         assertThat(sut?.textViewPressure?.text.toString(), equalTo("1000 hPa"))

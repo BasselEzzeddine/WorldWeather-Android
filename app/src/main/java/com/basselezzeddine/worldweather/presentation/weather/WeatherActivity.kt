@@ -16,6 +16,7 @@ import butterknife.ButterKnife
 import com.basselezzeddine.worldweather.R
 import com.basselezzeddine.worldweather.presentation.cities.City
 import com.basselezzeddine.worldweather.utils.IntentKeys
+import com.squareup.picasso.Picasso
 
 class WeatherActivity : AppCompatActivity() {
 
@@ -93,10 +94,12 @@ class WeatherActivity : AppCompatActivity() {
         progressBar.visibility = GONE
         textViewLow.text = weatherModel.low
         textViewHigh.text = weatherModel.high
-        imageViewWeather.setImageBitmap(weatherModel.image)
         textViewCurrent.text = weatherModel.current
         textViewVisibility.text = weatherModel.visibility
         textViewPressure.text = weatherModel.pressure
+        if (weatherModel.imageUrl != "") {
+            Picasso.get().load(weatherModel.imageUrl).into(imageViewWeather)
+        }
     }
 
     fun displayErrorMessage(message: String) {
