@@ -1,10 +1,7 @@
 package com.basselezzeddine.worldweather.presentation.weather
 
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.BitmapFactory
 import com.basselezzeddine.worldweather.BuildConfig
-import com.basselezzeddine.worldweather.R
 import com.basselezzeddine.worldweather.presentation.cities.City
 import com.basselezzeddine.worldweather.utils.IntentKeys
 import org.hamcrest.Matchers.equalTo
