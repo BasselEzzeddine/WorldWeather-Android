@@ -1,6 +1,6 @@
 package com.basselezzeddine.worldweather.model
 
-data class RawWeatherModel(val consolidated_weather: List<DayWeather>)
+data class RawWeatherInfo(val consolidated_weather: List<DayWeather>)
 
 data class DayWeather(val id: Long,
                       val weather_state_name: String,

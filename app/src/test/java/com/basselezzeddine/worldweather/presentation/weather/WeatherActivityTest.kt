@@ -49,7 +49,6 @@ class WeatherActivityTest {
     @Test
     fun callingDisplayWeatherInfo_displaysCorrectWeatherInfo() {
         // When
-        val icon = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.ic_sun)
         val weatherModel = WeatherModel("15°", "27°", "19°", "10 km", "1000 hPa", "")
         sut?.displayWeatherInfo(weatherModel)
 

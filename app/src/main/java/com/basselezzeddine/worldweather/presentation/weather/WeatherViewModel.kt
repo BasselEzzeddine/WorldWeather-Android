@@ -3,7 +3,7 @@ package com.basselezzeddine.worldweather.presentation.weather
 import android.arch.lifecycle.MutableLiveData
 import com.basselezzeddine.worldweather.R
 import com.basselezzeddine.worldweather.base.BaseViewModel
-import com.basselezzeddine.worldweather.model.RawWeatherModel
+import com.basselezzeddine.worldweather.model.RawWeatherInfo
 import com.basselezzeddine.worldweather.network.WeatherWorker
 import com.basselezzeddine.worldweather.utils.WEATHER_BASE_URL
 import com.basselezzeddine.worldweather.utils.tomorrowString
@@ -49,7 +49,7 @@ class WeatherViewModel : BaseViewModel() {
     private fun onRetrieveWeatherInfoFinish() {
     }
 
-    private fun onRetrieveWeatherInfoSuccess(rawWeatherInfo: RawWeatherModel) {
+    private fun onRetrieveWeatherInfoSuccess(rawWeatherInfo: RawWeatherInfo) {
         val tomorrowString = Calendar.getInstance().tomorrowString()
         val tomorrowWeather = rawWeatherInfo.consolidated_weather.first { it.applicable_date == tomorrowString }
 

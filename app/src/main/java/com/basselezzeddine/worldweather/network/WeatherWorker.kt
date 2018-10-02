@@ -1,6 +1,6 @@
 package com.basselezzeddine.worldweather.network
 
-import com.basselezzeddine.worldweather.model.RawWeatherModel
+import com.basselezzeddine.worldweather.model.RawWeatherInfo
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -8,8 +8,8 @@ import retrofit2.http.Path
 interface WeatherWorker {
 
     /**
-     * Get RawWeatherModel from the API
+     * Get RawWeatherInfo from the API
      */
     @GET("/api/location/{woeid}")
-    fun fetchWeatherInfo(@Path(value = "woeid", encoded = true) woeid: String): Observable<RawWeatherModel>
+    fun fetchWeatherInfo(@Path(value = "woeid", encoded = true) woeid: String): Observable<RawWeatherInfo>
 }
