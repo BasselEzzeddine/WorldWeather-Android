@@ -17,6 +17,21 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object NetworkModule {
 
     /**
+     * Provides the Retrofit object.
+     * @return the Retrofit object
+     */
+    @Provides
+    @Reusable
+    @JvmStatic
+    internal fun provideRetrofit(): Retrofit {
+        return Retrofit.Builder()
+                .baseUrl(WEATHER_BASE_URL)
+                .addConverterFactory(MoshiConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .build()
+    }
+
+    /**
      * Provides the WeatherWorker implementation.
      * @param retrofit the Retrofit object used to instantiate the worker
      * @return the WeatherWorker implementation.
@@ -26,20 +41,5 @@ object NetworkModule {
     @JvmStatic
     internal fun provideWeatherWorker(retrofit: Retrofit): WeatherWorker {
         return retrofit.create(WeatherWorker::class.java)
-    }
-
-    /**
-     * Provides the Retrofit object.
-     * @return the Retrofit object
-     */
-    @Provides
-    @Reusable
-    @JvmStatic
-    internal fun provideRetrofitInterface(): Retrofit {
-        return Retrofit.Builder()
-                .baseUrl(WEATHER_BASE_URL)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                .build()
     }
 }

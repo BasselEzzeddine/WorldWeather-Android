@@ -6,7 +6,7 @@ import com.basselezzeddine.worldweather.injection.component.ViewModelInjector
 import com.basselezzeddine.worldweather.injection.module.NetworkModule
 import com.basselezzeddine.worldweather.presentation.weather.WeatherViewModel
 
-abstract class BaseViewModel: ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
     private val injector: ViewModelInjector = DaggerViewModelInjector
             .builder()
