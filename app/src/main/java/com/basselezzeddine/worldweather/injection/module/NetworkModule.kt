@@ -17,7 +17,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object NetworkModule {
 
     /**
-     * Provides the Retrofit object.
+     * Provides the Retrofit object
      * @return the Retrofit object
      */
     @Provides
@@ -32,9 +32,9 @@ object NetworkModule {
     }
 
     /**
-     * Provides the WeatherWorker implementation.
+     * Provides the WeatherWorker implementation
      * @param retrofit the Retrofit object used to instantiate the worker
-     * @return the WeatherWorker implementation.
+     * @return the WeatherWorker implementation
      */
     @Provides
     @Reusable

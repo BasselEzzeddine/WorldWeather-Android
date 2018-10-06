@@ -6,14 +6,14 @@ import dagger.Component
 import javax.inject.Singleton
 
 /**
- * Component providing inject() method for ViewModels
+ * Component providing inject() methods for ViewModels
  */
 @Singleton
 @Component(modules = [(NetworkModule::class)])
 interface ViewModelInjector {
 
     /**
-     * Injects required dependencies into the specified WeatherViewModel.
+     * Injects required dependencies into the specified ViewModel
      * @param weatherViewModel WeatherViewModel in which to inject the dependencies
      */
     fun inject(weatherViewModel: WeatherViewModel)

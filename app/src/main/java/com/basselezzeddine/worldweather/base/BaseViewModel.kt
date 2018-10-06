@@ -18,7 +18,7 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     /**
-     * Injects the required dependencies
+     * Injects required dependencies
      */
     private fun inject() {
         when (this) {
