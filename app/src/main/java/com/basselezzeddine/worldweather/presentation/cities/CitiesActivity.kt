@@ -2,13 +2,13 @@ package com.basselezzeddine.worldweather.presentation.cities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import com.basselezzeddine.worldweather.R
 import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper.VERTICAL
 import android.support.v7.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.basselezzeddine.worldweather.R
 
 class CitiesActivity : AppCompatActivity() {
 

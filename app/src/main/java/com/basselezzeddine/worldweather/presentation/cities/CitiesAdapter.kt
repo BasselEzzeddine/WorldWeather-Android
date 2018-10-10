@@ -10,7 +10,7 @@ import com.basselezzeddine.worldweather.utils.inflate
 import com.basselezzeddine.worldweather.presentation.weather.WeatherActivity
 import kotlinx.android.synthetic.main.recyclerview_item_city.view.*
 
-class CitiesAdapter(private val cityList: List<City>):
+class CitiesAdapter(private val cityList: List<City>) :
         RecyclerView.Adapter<CitiesAdapter.CityHolder>() {
 
     override fun getItemCount() = cityList.size
@@ -25,7 +25,7 @@ class CitiesAdapter(private val cityList: List<City>):
         holder.bindCity(city)
     }
 
-    class CityHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class CityHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private lateinit var city: City
 
         init {
